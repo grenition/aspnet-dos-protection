@@ -18,4 +18,8 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\DosProtection.CoreLib\DosProtection.CoreLib.csproj" />
+  </ItemGroup>
+
 </Project>
