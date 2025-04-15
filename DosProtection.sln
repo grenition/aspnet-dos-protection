@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DosProtection.CoreLib", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DosProtection.AspNetLib", "src\DosProtection.AspNetLib\DosProtection.AspNetLib.csproj", "{E0222676-BCB3-4A1B-81A9-524644326E53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEnvironment", "src\TestEnvironment\TestEnvironment.csproj", "{702855A6-7B04-4232-AFA2-B92B17E8E405}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,18 @@ Global
 		{E0222676-BCB3-4A1B-81A9-524644326E53}.Release|x64.Build.0 = Release|Any CPU
 		{E0222676-BCB3-4A1B-81A9-524644326E53}.Release|x86.ActiveCfg = Release|Any CPU
 		{E0222676-BCB3-4A1B-81A9-524644326E53}.Release|x86.Build.0 = Release|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Debug|x64.Build.0 = Debug|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Debug|x86.Build.0 = Debug|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Release|Any CPU.Build.0 = Release|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Release|x64.ActiveCfg = Release|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Release|x64.Build.0 = Release|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Release|x86.ActiveCfg = Release|Any CPU
+		{702855A6-7B04-4232-AFA2-B92B17E8E405}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +64,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{26B2B342-85FA-4E52-B457-21D3FE94EB0D} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{E0222676-BCB3-4A1B-81A9-524644326E53} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{702855A6-7B04-4232-AFA2-B92B17E8E405} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
