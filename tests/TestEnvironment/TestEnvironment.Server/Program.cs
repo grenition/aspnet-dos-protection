@@ -1,41 +1,41 @@
+using DosProtection.AspNetApi.Middleware;
+using TestEnvironment.Server.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<ICacheProvider, InMemoryCache>();
+
+var stressAnalyzer = new StressAnalyzer();
+
+builder.Services.AddStaticPowChallenging(null, config =>
+{
+    config.Difficulty = 10;
+    config.CacheLifetimeMinutes = 2;
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+app.UsePowChallenging();
 
-var summaries = new[]
+app.MapGet("/test", () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    return Results.Ok();
+});
 
-app.MapGet("/weatherforecast", () =>
+app.MapPost("/stress", (float newValue) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    stressAnalyzer.SetStress(newValue);
+    return Results.Ok();
+});
+
+app.MapGet("/stress", () => Results.Ok(new
+{
+    Stress = stressAnalyzer.GetStress()
+}));
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

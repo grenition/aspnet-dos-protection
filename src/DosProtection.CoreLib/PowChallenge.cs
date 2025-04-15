@@ -4,21 +4,21 @@ using System.Text;
 
 namespace DosProtection.ProofOfWork
 {
-    public struct PowChallengeConfig
+    public class PowChallengeConfig
     {
-        public int Difficulty;
+        public int Difficulty { get; set; }
     }
 
-    public struct PowChallengeStatement
+    public class PowChallengeStatement
     {
-        public string Challenge;
-        public int Difficulty;
+        public string? Challenge { get; set; }
+        public int Difficulty { get; set; }
     }
 
-    public struct PowChallengeSolution
+    public class PowChallengeSolution
     {
-        public string Challenge;
-        public int Nonce;
+        public string? Challenge { get; set; }
+        public int Nonce { get; set; }
     }
 
     public static class PowChallenge

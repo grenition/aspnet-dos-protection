@@ -9,26 +9,34 @@ public static class MiddlewareExtensions
 {
     public static IServiceCollection AddStaticPowChallenging(
         this IServiceCollection services, 
-        Func<IServiceProvider, ICacheProvider> cacheProvider,
-        Action<PowStaticConfig> configure)
+        Func<IServiceProvider, ICacheProvider>? cacheProvider,
+        Action<PowStaticConfig>? configure)
     {
-        services.Configure(configure);
-        services.AddScoped(cacheProvider);
         services.AddScoped<IRuntimePowDataProvider, StaticPowDataProvider>();
+        services.AddScoped<PowChallengeMiddleware>();
+        
+        if(cacheProvider != null)
+            services.AddScoped(cacheProvider);
+        if(configure != null)
+            services.Configure(configure);
         
         return services;
     }
 
     public static IServiceCollection AddDynamicPowChallenging(
         this IServiceCollection services,
-        Func<IServiceProvider, IServerStressProvider> serverStressProvider,
-        Func<IServiceProvider, ICacheProvider> cacheProvider,
-        Action<PowDynamicConfig> configure)
+        Func<IServiceProvider, IServerStressProvider>? serverStressProvider,
+        Func<IServiceProvider, ICacheProvider>? cacheProvider,
+        Action<PowDynamicConfig>? configure)
     {
-        services.Configure(configure);
-        services.AddScoped(serverStressProvider);
-        services.AddScoped(cacheProvider);
         services.AddScoped<IRuntimePowDataProvider, DynamicPowDataProvider>();
+        services.AddScoped<PowChallengeMiddleware>();
+        if(serverStressProvider != null)
+            services.AddScoped(serverStressProvider);
+        if(cacheProvider != null)
+            services.AddScoped(cacheProvider);
+        if(configure != null)
+            services.Configure(configure);
 
         return services;
     }
