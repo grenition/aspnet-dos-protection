@@ -22,20 +22,9 @@ app.UseSwaggerUI();
 
 app.UsePowChallenging();
 
-app.MapGet("/test", () =>
+app.MapPost("/test", () => Results.Ok(new
 {
-    return Results.Ok();
-});
-
-app.MapPost("/stress", (float newValue) =>
-{
-    stressAnalyzer.SetStress(newValue);
-    return Results.Ok();
-});
-
-app.MapGet("/stress", () => Results.Ok(new
-{
-    Stress = stressAnalyzer.GetStress()
+    Message = "Welcome!"
 }));
 
 app.Run();
