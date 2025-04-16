@@ -16,10 +16,13 @@
 ## Структура проекта
 
 **/src**
+
 Основное решение сосредоточено в двух проектах `DosProtection.AspNetLib.csproj` и `DosProtection.CoreLib.csproj`.
 `DosProtection.CoreLib.csproj` содержит в себе общий класс, который реализует генерацию и валидацию PoW задач. Может быть использовать как в WebAPI, так и в клиенте .
 `DosProtection.AspNetLib.csproj` представляет собой библиотеку для ASP.NET, которая предоставляет Middleware `PowChallengeMiddleware.cs` и инфраструктуру для его интеграции в ASP.NET приложения.
+
 **/tests**
+
 Здесь располагается тестовое окружения для стресс тестов и просто проект с Unit тестами.
 
 # Тестирование
