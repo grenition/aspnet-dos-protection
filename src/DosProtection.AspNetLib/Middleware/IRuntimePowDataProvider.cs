@@ -3,7 +3,7 @@ namespace DosProtection.AspNetApi.Middleware;
 public class RuntimePowData
 {
     public int Difficulty { get; set; }
-    public float CacheLifetimeMinutes { get; set; }
+    public float CacheLifetimeSeconds { get; set; }
 }
 
 public interface IRuntimePowDataProvider

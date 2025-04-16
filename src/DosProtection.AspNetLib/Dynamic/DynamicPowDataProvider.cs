@@ -20,7 +20,7 @@ public class DynamicPowDataProvider(
             .MaxBy(kv => kv.Key);
 
         _runtimePowData.Difficulty = matchedKey.Value;
-        _runtimePowData.CacheLifetimeMinutes = config.CacheLifetimeMinutes;
+        _runtimePowData.CacheLifetimeSeconds = config.CacheLifetimeMinutes;
 
         return _runtimePowData;
     }

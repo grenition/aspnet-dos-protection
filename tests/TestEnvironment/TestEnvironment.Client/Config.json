@@ -4,8 +4,9 @@
     "TestEndpoint":"/test"
   },
   "StressTestConfig":{
-    "Seconds": 5,
-    "SolvePow": false,
-    "RequestsPerSecond": 50
+    "Seconds": 1000,
+    "SolvePow": true,
+    "RequestsPerSecond": 2000,
+    "MaxParallelOperationsCount": 10000
   }
 }

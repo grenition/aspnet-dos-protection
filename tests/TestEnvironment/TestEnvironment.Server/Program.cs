@@ -7,12 +7,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<ICacheProvider, InMemoryCache>();
 
-var stressAnalyzer = new StressAnalyzer();
+var powSection = builder.Configuration.GetSection("PowConfig");
 
 builder.Services.AddStaticPowChallenging(null, config =>
 {
-    config.Difficulty = 10;
-    config.CacheLifetimeMinutes = 2;
+    powSection.Bind(config);
 });
 
 var app = builder.Build();

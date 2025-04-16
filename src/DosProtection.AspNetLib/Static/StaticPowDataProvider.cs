@@ -8,7 +8,7 @@ public class StaticPowDataProvider(IOptions<PowStaticConfig> powStaticConfig) : 
     private readonly RuntimePowData _runtimePowData = new RuntimePowData()
     {
         Difficulty = powStaticConfig.Value.Difficulty,
-        CacheLifetimeMinutes = powStaticConfig.Value.CacheLifetimeMinutes
+        CacheLifetimeSeconds = powStaticConfig.Value.CacheLifetimeSeconds
     };
 
     public RuntimePowData GetPowData() => _runtimePowData;

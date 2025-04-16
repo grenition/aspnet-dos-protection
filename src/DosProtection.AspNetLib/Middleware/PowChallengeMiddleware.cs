@@ -63,7 +63,7 @@ public class PowChallengeMiddleware(
             new PowChallengeConfig { Difficulty = difficulty }
         );
 
-        await cacheProvider.WriteAsync(statement.Challenge, TimeSpan.FromMinutes(runtimeData.CacheLifetimeMinutes));
+        await cacheProvider.WriteAsync(statement.Challenge, TimeSpan.FromSeconds(runtimeData.CacheLifetimeSeconds));
 
         context.Response.StatusCode = StatusCodes.Status401Unauthorized;
         context.Response.ContentType = "application/json";
