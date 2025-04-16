@@ -1,0 +1,11 @@
+{
+  "ServerConfig":{
+    "Url":"http://localhost:5286",
+    "TestEndpoint":"/test"
+  },
+  "StressTestConfig":{
+    "Seconds": 5,
+    "SolvePow": false,
+    "RequestsPerSecond": 50
+  }
+}
