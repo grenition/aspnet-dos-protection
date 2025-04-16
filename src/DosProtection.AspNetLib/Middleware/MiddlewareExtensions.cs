@@ -1,4 +1,4 @@
-using DosProtection.AspNetApi.Dynamic;
+using DosProtection.AspNetApi.Cache;
 using DosProtection.AspNetApi.Static;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,6 +12,7 @@ public static class MiddlewareExtensions
         Func<IServiceProvider, ICacheProvider>? cacheProvider,
         Action<PowStaticConfig>? configure)
     {
+        services.AddScoped<IChallengePool, ChallengePool>();
         services.AddScoped<IRuntimePowDataProvider, StaticPowDataProvider>();
         services.AddScoped<PowChallengeMiddleware>();
         
@@ -20,24 +21,6 @@ public static class MiddlewareExtensions
         if(configure != null)
             services.Configure(configure);
         
-        return services;
-    }
-
-    public static IServiceCollection AddDynamicPowChallenging(
-        this IServiceCollection services,
-        Func<IServiceProvider, IServerStressProvider>? serverStressProvider,
-        Func<IServiceProvider, ICacheProvider>? cacheProvider,
-        Action<PowDynamicConfig>? configure)
-    {
-        services.AddScoped<IRuntimePowDataProvider, DynamicPowDataProvider>();
-        services.AddScoped<PowChallengeMiddleware>();
-        if(serverStressProvider != null)
-            services.AddScoped(serverStressProvider);
-        if(cacheProvider != null)
-            services.AddScoped(cacheProvider);
-        if(configure != null)
-            services.Configure(configure);
-
         return services;
     }
 

@@ -1,27 +1,46 @@
-using DosProtection.AspNetApi.Middleware;
+using DosProtection.AspNetApi.Cache;
 using Microsoft.Extensions.Caching.Memory;
 
-namespace TestEnvironment.Server.Services
+namespace TestEnvironment.Server.Services;
+
+public class InMemoryCache : ICacheProvider, IDisposable
 {
-    public class InMemoryCache : ICacheProvider
+    private readonly MemoryCache _cache = new(new MemoryCacheOptions());
+
+    public Task WriteAsync(string? key, string? value, TimeSpan timeSpan)
     {
-        private readonly MemoryCache _cache = new MemoryCache(new MemoryCacheOptions());
-
-        public Task WriteAsync(string? key, TimeSpan timeSpan)
+        if (key != null && value != null)
         {
-            _cache.Set(key!, true, timeSpan);
-            return Task.CompletedTask;
+            _cache.Set(key, value, timeSpan);
         }
+        return Task.CompletedTask;
+    }
 
-        public Task<bool> Contains(string key)
-        {
-            var exists = _cache.TryGetValue(key, out _);
-            return Task.FromResult(exists);
-        }
+    public Task<string?> GetAsync(string? key)
+    {
+        if (key == null) return Task.FromResult<string?>(null);
 
-        public void Dispose()
+        _ = _cache.TryGetValue(key, out var result);
+        return Task.FromResult(result as string);
+    }
+
+    public Task<bool> Contains(string key)
+    {
+        var exists = _cache.TryGetValue(key, out _);
+        return Task.FromResult(exists);
+    }
+
+    public Task RemoveAsync(string? key, string? value)
+    {
+        if (key != null)
         {
-            _cache.Dispose();
+            _cache.Remove(key);
         }
+        return Task.CompletedTask;
+    }
+
+    public void Dispose()
+    {
+        _cache.Dispose();
     }
 }

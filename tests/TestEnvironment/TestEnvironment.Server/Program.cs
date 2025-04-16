@@ -1,3 +1,4 @@
+using DosProtection.AspNetApi.Cache;
 using DosProtection.AspNetApi.Middleware;
 using TestEnvironment.Server.Services;
 
