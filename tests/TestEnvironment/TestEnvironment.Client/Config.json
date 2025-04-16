@@ -5,8 +5,8 @@
   },
   "StressTestConfig":{
     "Seconds": 1000,
-    "SolvePow": false,
-    "RequestsPerSecond": 20000,
+    "SolvePow": true,
+    "RequestsPerSecond": 1000,
     "MaxParallelOperationsCount": 10000
   }
 }
